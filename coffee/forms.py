@@ -31,3 +31,11 @@ class PowderForm(forms.ModelForm):
     class Meta:
         model = Powder
         fields = "__all__"
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["date"]
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+        }

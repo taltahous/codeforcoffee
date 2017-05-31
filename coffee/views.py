@@ -211,3 +211,24 @@ def editPowder(request, powder_id):
 def deletePowder(request, powder_id):
     Powder.objects.get(id=powder_id).delete()
     return redirect("home")
+
+
+def createOrder(request, coffee_id):
+    context = {}
+    coffee = Coffee.objects.get(id=coffee_id)
+    context['coffee'] = coffee
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.coffee = request.coffee
+            order.save()
+            return redirect("home")
+        else:
+            return render(request, "createOrder.html", context)
+    else:
+        form = OrderForm()
+        context['form'] = form
+        return render(request, "createOrder.html", context)
