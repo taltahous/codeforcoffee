@@ -5,7 +5,7 @@
         <title>Edit Powder</title>
     </head>
     <body>
-        <form class="" action="{% url "editPowder" powder_id=powder.id %}" method=“post”>
+        <form class="" action="{% url "editPowder" powder_id=powder.id %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" name="" value="Edit">

@@ -5,7 +5,7 @@
     <title>Create Bean</title>
 </head>
 <body>'
-<form class="" action="{% url "createBean" %} method="post">
+<form class="" action="{% url "createBean" %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type=“submit” name="" value=“Create”>

@@ -4,10 +4,10 @@
     <meta charset=“UTF-8">
     <title>Create Coffee</title>
 </head>
-<body>'
-<form class=“” action=“{% url "createCoffee %}” method=“post”>
+<body>
+<form class=“” action="{% url "createCoffee" %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{form.as_p}}
     <input type=“submit” name=“” value=“Create”>
 </form>
 </body>

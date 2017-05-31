@@ -4,8 +4,8 @@
     <meta charset=“UTF-8">
     <title>Create Powder</title>
 </head>
-<body>'
-<form class="" action="{% url "createPowder" %}" method= "post">
+<body>
+<form class="" action="{% url "createPowder" %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type=“submit” name="" value=“Create”>

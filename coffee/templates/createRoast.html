@@ -2,10 +2,10 @@
 <html lang=“en”>
 <head>
     <meta charset=“UTF-8">
-    <title>Create Syrup</title>
+    <title>Create Roast</title>
 </head>
 <body>
-<form class="" action="{% url "createSyrup" %}" method="post">
+<form class="" action="{% url "createRoast" %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type=“submit” name="" value=“Create”>

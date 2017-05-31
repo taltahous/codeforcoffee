@@ -5,7 +5,7 @@
         <title>Edit Coffee</title>
     </head>
     <body>
-        <form class="" action="{% url "editCoffee" coffee_id=coffee.id %}" method=“post”>
+        <form class="" action="{% url "editCoffee" coffee_id=coffee.id %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" name="" value="Edit">
