@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang=“en”>
+<head>
+    <meta charset=“UTF-8">
+    <title>Edit Coffee</title>
+</head>
+<body>
+<div class="container">
+<div class="row">
+    <h1>{{ user }}</h1>
+</div>
+
+    <div class="row">
+        {% for coffee in coffees %}
+            <div class="col col-sm-3">{{ coffee }}</div>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>
