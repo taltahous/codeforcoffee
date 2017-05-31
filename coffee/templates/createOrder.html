@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang=“en”>
-    <head>
-        <meta charset=“UTF-8">
-        <title>Create Order</title>
-    </head>
-    <body>
-        <form class="" action="{% url "createOrder" coffee_id=coffee.id %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" name="" value="Create">
-        </form>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+    Create Order
+{% endblock %}
+{% block content %}
+    <form class="" action="{% url "createOrder" coffee_id=coffee.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class= "btn btn-primary" name="" value="Create">
+    </form>
+{% endblock %}

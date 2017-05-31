@@ -223,7 +223,7 @@ def createOrder(request, coffee_id):
         if form.is_valid():
             order = form.save(commit=False)
             order.user = request.user
-            order.coffee = request.coffee
+            order.coffee = coffee
             order.save()
             return redirect("home")
         else:
