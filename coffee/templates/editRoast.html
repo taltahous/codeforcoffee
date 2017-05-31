@@ -2,10 +2,10 @@
 <html lang=“en”>
     <head>
         <meta charset=“UTF-8">
-        <title>Edit Coffee</title>
+        <title>Edit Roast</title>
     </head>
     <body>
-        <form class="" action="{% url "editCoffee" coffee_id=coffee.id %}" method="post">
+        <form class="" action="{% url "editRoast" roast_id=roast.id %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" name="" value="Edit">
