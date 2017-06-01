@@ -1,13 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="row">
 
+        <div class="col col-sm-3 col-md-3">
+            <a href="{% url 'createCoffee' %}">
+                <div class="btn btn-block">create new coffee</div>
+            </a>
+        </div>
 
-</head>
-<body>
+        <div class="col col-sm-9 ">
 
-    HELLO
-</body>
-</html>
+            <div class="row">
+
+                <h3>Date: {{ today }}</h3>
+                {% if order_list %}
+                {% for coffee in order_list %}
+
+                    <h3>{{ coffee }}</h3>
+                {% endfor %}
+                {% else %}
+                    <p>No Coffee Ordered on this Date</p>
+            {% endif %}
+            </div>
+            <div class="row">
+                <h3>My customized Coffee </h3>
+                {% for coffee in coffee_list %}
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>{{ coffee }}</h3>
+                                <p>
+                                    <a href="{% url 'editCoffee' coffee.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'deleteCoffee' coffee.id %}" class="btn btn-default">Delete</a>
+                                    <a href="{% url 'createOrder' coffee.id %}" class="btn btn-default">Order</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
