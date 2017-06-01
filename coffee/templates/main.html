@@ -12,16 +12,34 @@
         </div>
 
         <div class="col col-sm-9 ">
-            <h3>Today's Order</h3>
+
             <div class="row">
+
+                <h3>Date: {{ today }}</h3>
+                {% if order_list %}
                 {% for coffee in order_list %}
+
                     <h3>{{ coffee }}</h3>
                 {% endfor %}
+                {% else %}
+                    <p>No Coffee Ordered on this Date</p>
+            {% endif %}
             </div>
             <div class="row">
-            <h3>My customized Coffee </h3>
+                <h3>My customized Coffee </h3>
                 {% for coffee in coffee_list %}
-                    <h3>{{ coffee }}</h3>
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>{{ coffee }}</h3>
+                                <p>
+                                    <a href="{% url 'editCoffee' coffee.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'deleteCoffee' coffee.id %}" class="btn btn-default">Delete</a>
+                                    <a href="{% url 'createOrder' coffee.id %}" class="btn btn-default">Order</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
 

@@ -5,10 +5,6 @@ from .forms import *
 import datetime
 
 
-def main(request):
-    return render(request, "main.html", {})
-
-
 def login(request):
     return render(request, "login.html", {})
 
@@ -226,7 +222,7 @@ def createOrder(request, coffee_id):
             order.user = request.user
             order.coffee = coffee
             order.save()
-            return redirect("home")
+            return redirect("main.html")
         else:
             return render(request, "createOrder.html", context)
     else:
@@ -241,6 +237,7 @@ def user_list(request):
     context['user_list'] = user_list
     return render(request, 'user_list.html', context)
 
+
 def user_coffees(request, user_id):
     context = {}
     user = User.objects.get(id=user_id)
@@ -249,14 +246,26 @@ def user_coffees(request, user_id):
     context['coffees'] = coffees
     return render(request, 'user_coffees.html', context)
 
-def dashboard(request):
-    context={}
-    user=request.user
-    context['user']=user
-    today=datetime.date.today()
-    context['today'] = today
-    coffee_list=Coffee.objects.filter(user=user)
+
+def main(request):
+    context = {}
+    user = request.user
+    context['user'] = user
+    form = SearchForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            date = form.clean_data.get['date']
+            context['today'] = date
+            order_list = Order.objects.filter(user=user, date=today)
+            context['order_list'] = order_list
+
+    else:
+        form = SearchForm()
+        context['form'] = form
+        today = datetime.date.today()
+        context['today'] = today
+        order_list = Order.objects.filter(user=user, date=today)
+        context['order_list'] = order_list
+    coffee_list = Coffee.objects.filter(user=user)
     context['coffee_list'] = coffee_list
-    order_list=Order.objects.filter(user=user,date=today)
-    context['order_list'] = order_list
-    return render(request,"main.html",context)
+    return render(request, "main.html", context)
