@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from .forms import *
 import datetime
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def login(request):
@@ -269,3 +271,15 @@ def main(request):
     coffee_list = Coffee.objects.filter(user=user)
     context['coffee_list'] = coffee_list
     return render(request, "main.html", context)
+
+
+def send_email(request, date):
+    context = {}
+    order_list = Order.objects.filter(user=request.user, date=date)
+    subject = "HAHA SPAAAAAAM!!!! YOU ARE NOOB!"
+    message = "These are my orders, make urself useful and get THEM:\n"
+    for order in order_list:
+        message += "%s, " % (order.coffee)
+
+    send_email(subject, message, ['alsaff1987@gmail.com', 'hamzamakia@gmail.com'], settings.EMAIL_HOST_USER)
+    return redirect("main.html")
