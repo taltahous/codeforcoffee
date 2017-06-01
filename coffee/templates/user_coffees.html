@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang=“en”>
-<head>
-    <meta charset=“UTF-8">
-    <title>Edit Coffee</title>
-</head>
-<body>
-<div class="container">
+{% extends 'base.html' %}
+{% block title %}
+    User's Coffee List
+{% endblock %}
+{% block content %}
 <div class="row">
     <h1>{{ user }}</h1>
 </div>
@@ -16,7 +13,4 @@
         {% endfor %}
     </div>
 
-</div>
-
-</body>
-</html>
+{% endblock %}

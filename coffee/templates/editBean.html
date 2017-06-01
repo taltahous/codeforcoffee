@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang=“en”>
-    <head>
-        <meta charset=“UTF-8">
-        <title>Edit Bean</title>
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Edit Bean
+{% endblock %}
+{% block content %}
+
         <form class="" action="{% url "editBean" bean_id=bean.id %}" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" name="" value="Edit">
+            {{ form  | crispy }}
+        <input  class="btn btn-primary" type="submit" name="" value="Edit">
         </form>
-    </body>
-</html>
+ {% endblock %}

@@ -1,13 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="row">
 
+        <div class="col col-sm-3 col-md-3">
+            <a href="{% url 'createCoffee' %}">
+                <div class="btn btn-block">create new coffee</div>
+            </a>
+        </div>
 
-</head>
-<body>
+        <div class="col col-sm-9 ">
+            <h3>Today's Order</h3>
+            <div class="row">
+                {% for coffee in order_list %}
+                    <h3>{{ coffee }}</h3>
+                {% endfor %}
+            </div>
+            <div class="row">
+            <h3>My customized Coffee </h3>
+                {% for coffee in coffee_list %}
+                    <h3>{{ coffee }}</h3>
+                {% endfor %}
+            </div>
 
-    HELLO
-</body>
-</html>
+        </div>
+    </div>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from .forms import *
+import datetime
 
 
 def main(request):
@@ -247,3 +248,15 @@ def user_coffees(request, user_id):
     coffees = Coffee.objects.filter(user=user)
     context['coffees'] = coffees
     return render(request, 'user_coffees.html', context)
+
+def dashboard(request):
+    context={}
+    user=request.user
+    context['user']=user
+    today=datetime.date.today()
+    context['today'] = today
+    coffee_list=Coffee.objects.filter(user=user)
+    context['coffee_list'] = coffee_list
+    order_list=Order.objects.filter(user=user,date=today)
+    context['order_list'] = order_list
+    return render(request,"main.html",context)

@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang=“en”>
-<head>
-    <meta charset=“UTF-8">
-    <title>Edit Coffee</title>
-</head>
-<body>
-<div class="container">
+{% extends 'base.html' %}
+{% block title %}
+    Users List
+{% endblock %}
+{% block content %}
     <div class="row">
         {% for user in user_list %}
             <a href="{% url 'user_coffees' user_id=user.id %}"><div class="col col-sm-3">{{ user }}</div></a>
         {% endfor %}
     </div>
-
-</div>
-
-</body>
-</html>
+{% endblock %}
