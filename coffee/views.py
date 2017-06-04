@@ -224,7 +224,7 @@ def createOrder(request, coffee_id):
             order.user = request.user
             order.coffee = coffee
             order.save()
-            return redirect("home")
+            return redirect("main.html")
         else:
             return render(request, "createOrder.html", context)
     else:
@@ -273,18 +273,13 @@ def main(request):
     return render(request, "main.html", context)
 
 
-def send_email(request, year, month, day):
+def send_email(request, date):
     context = {}
-    date=datetime.datetime.strptime('%s%s%s'%(year,month,day), "%Y%m%d").date()
     order_list = Order.objects.filter(user=request.user, date=date)
     subject = "HAHA SPAAAAAAM!!!! YOU ARE NOOB!"
-    subject2 = "Coded Coffee"
     message = "These are my orders, make urself useful and get THEM:\n"
-    message2 = "Today's Order\n"
     for order in order_list:
         message += "%s, " % (order.coffee)
 
-    send_email(subject, message,settings.EMAIL_HOST_USER, ['alsaff1987@gmail.com', 'hamzamakia@gmail.com'] )
-    send_email(subject2, message2,settings.EMAIL_HOST_USER, ['hashim@joincoded.com',])
-
+    send_email(subject, message, ['alsaff1987@gmail.com', 'hamzamakia@gmail.com'], settings.EMAIL_HOST_USER)
     return redirect("main.html")
