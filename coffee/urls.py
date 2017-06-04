@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^userlist/$', user_list, name='user_list'),
     url(r'^usercoffees/(?P<user_id>[0-9]+)/$', user_coffees, name='user_coffees'),
     url(r'^sendemail/(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})/$', send_email, name='send_email'),
+    url(r'^replicateorder/(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})/$', replicate_order, name='replicate_order'),
 
     url(r'^createcoffee/$', createCoffee, name='createCoffee'),
     url(r'^editcoffee/(?P<coffee_id>[0-9]+)/$', editCoffee, name='editCoffee'),
